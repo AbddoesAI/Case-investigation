@@ -1,0 +1,216 @@
+
+
+site1 = """<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Evidence Site 01 - The Bequest Letter</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600&family=Courier+Prime&display=swap');
+        
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body {
+            font-family: 'Cormorant Garamond', serif;
+            background: #0a0a0f;
+            color: #e0e0e0;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 40px 20px;
+        }
+        
+        .container {
+            max-width: 800px;
+            width: 100%;
+        }
+        
+        .back-link {
+            display: inline-block;
+            margin-bottom: 30px;
+            color: #d4af37;
+            text-decoration: none;
+            font-family: 'Courier Prime', monospace;
+        }
+        
+        .letter-container {
+            background: #f5f1e8;
+            color: #2c2416;
+            padding: 60px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+            position: relative;
+        }
+        
+        .letter-header {
+            text-align: center;
+            margin-bottom: 40px;
+            padding-bottom: 30px;
+            border-bottom: 2px solid #d4af37;
+        }
+        
+        .seal {
+            width: 80px;
+            height: 80px;
+            border: 3px solid #d4af37;
+            border-radius: 50%;
+            margin: 0 auto 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 32px;
+        }
+        
+        .letter-body p {
+            margin-bottom: 20px;
+            font-size: 18px;
+            line-height: 1.8;
+        }
+        
+        .uv-tool {
+            margin-top: 40px;
+            padding: 30px;
+            background: rgba(0,0,0,0.05);
+            border-left: 4px solid #d4af37;
+        }
+        
+        .uv-btn {
+            padding: 15px 30px;
+            background: #2c2416;
+            color: #f5f1e8;
+            border: none;
+            cursor: pointer;
+            font-family: 'Courier Prime', monospace;
+            margin-top: 15px;
+        }
+        
+        .uv-reveal {
+            display: none;
+            margin-top: 20px;
+            padding: 20px;
+            background: #1a1a2e;
+            color: #00ff00;
+            font-family: 'Courier Prime', monospace;
+            border: 1px solid #00ff00;
+            box-shadow: 0 0 20px rgba(0,255,0,0.2);
+        }
+        
+        .uv-reveal.visible { display: block; }
+        
+        .password-section {
+            margin-top: 40px;
+            padding: 30px;
+            background: rgba(0,0,0,0.05);
+            display: none;
+        }
+        
+        .password-section.visible { display: block; }
+        
+        input[type="password"] {
+            padding: 15px;
+            font-family: 'Courier Prime', monospace;
+            border: 2px solid #2c2416;
+            width: 300px;
+            margin-right: 10px;
+        }
+        
+        .submit-btn {
+            padding: 15px 30px;
+            background: #c41e3a;
+            color: white;
+            border: none;
+            cursor: pointer;
+            font-weight: 600;
+        }
+        
+        .success-message {
+            display: none;
+            margin-top: 30px;
+            padding: 30px;
+            background: #00c853;
+            color: white;
+            text-align: center;
+        }
+        
+        .success-message.visible { display: block; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="00_MAIN_HUB.html" class="back-link">← Return to Archive</a>
+        
+        <div class="letter-container">
+            <div class="letter-header">
+                <div class="seal">V</div>
+                <h1>The Vale Estate</h1>
+                <p style="opacity: 0.6;">Secure Correspondence</p>
+            </div>
+            
+            <div class="letter-body">
+                <p>Dear Ms. <strong>[HER NAME]</strong>,</p>
+                
+                <p>It is with great personal interest that I write to you regarding the estate of Mr. Julian Vale, historian and collector, who has designated you as the sole beneficiary of a specific bequest within his archives.</p>
+                
+                <p>Mr. Vale left strict instructions that authentication must be completed through examination of this correspondence. Please review carefully.</p>
+                
+                <p>The collection comprises twelve items spanning two centuries of romantic history. However, the final piece—contemporary, personal, incomplete—requires your participation.</p>
+                
+                <p style="margin-top: 40px;">Yours in service,</p>
+                <p style="font-style: italic;">M. Sterling<br>Estate Executor</p>
+            </div>
+            
+            <div class="uv-tool">
+                <h3>🔍 Document Analysis Tool</h3>
+                <p>Ultraviolet spectrum scan may reveal hidden markers.</p>
+                <button class="uv-btn" onclick="revealUV()">Activate UV Light</button>
+                
+                <div class="uv-reveal" id="uv-data">
+                    <p>⚡ HIDDEN DATA DETECTED ⚡</p>
+                    <p style="margin-top: 15px;">SITE ACCESS CODE: <strong>SHADOW</strong></p>
+                    <p style="margin-top: 10px; font-size: 12px; opacity: 0.8;">Use this code to unlock the next evidence site.</p>
+                </div>
+            </div>
+            
+            <div class="password-section" id="password-section">
+                <h3>🔐 Unlock Next Site</h3>
+                <p>Enter the access code revealed above:</p>
+                <input type="password" id="site-password" placeholder="Enter code">
+                <button class="submit-btn" onclick="checkPassword()">Unlock Site 02</button>
+                <p id="error-msg" style="color: #c41e3a; margin-top: 15px;"></p>
+            </div>
+            
+            <div class="success-message" id="success-msg">
+                <h2>✓ Site 01 Complete</h2>
+                <p>Authentication successful. Site 02 unlocked.</p>
+                <a href="00_MAIN_HUB.html" style="color: white; display: inline-block; margin-top: 20px; padding: 15px 30px; background: rgba(0,0,0,0.3); text-decoration: none;">Return to Archive →</a>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        function revealUV() {
+            document.getElementById('uv-data').classList.add('visible');
+            document.getElementById('password-section').classList.add('visible');
+        }
+        
+        function checkPassword() {
+            const input = document.getElementById('site-password').value.toUpperCase().trim();
+            const correct = 'SHADOW';
+            
+            if (input === correct) {
+                localStorage.setItem('vale_site_1', 'completed');
+                localStorage.setItem('vale_site_2', 'unlocked');
+                document.getElementById('success-msg').classList.add('visible');
+                document.getElementById('password-section').style.display = 'none';
+            } else {
+                document.getElementById('error-msg').textContent = 'Incorrect code. Check UV reveal.';
+            }
+        }
+    </script>
+</body>
+</html>"""
+
+with open('/mnt/kimi/output/SITE_1_BEQUEST.html', 'w') as f:
+    f.write(site1)
+
