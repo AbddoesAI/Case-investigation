@@ -1,1 +1,231 @@
 
+# Site 7: Final Bequest - The Gateway to Website 2
+site7 = """<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Evidence Site 07 - Final Bequest</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600&family=Courier+Prime&family=Inter:wght@400;600&display=swap');
+        
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #000;
+            color: #e0e0e0;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 40px 20px;
+        }
+        
+        .container {
+            max-width: 800px;
+            width: 100%;
+        }
+        
+        .login-gate {
+            background: #0a0a0f;
+            padding: 60px;
+            text-align: center;
+            border: 2px solid #c41e3a;
+        }
+        
+        .login-gate h2 {
+            color: #c41e3a;
+            margin-bottom: 20px;
+            font-size: 32px;
+        }
+        
+        .login-gate p {
+            margin-bottom: 30px;
+            opacity: 0.8;
+        }
+        
+        .login-gate input {
+            padding: 20px;
+            background: #1a1a1a;
+            border: 2px solid #c41e3a;
+            color: #c41e3a;
+            font-family: 'Courier Prime', monospace;
+            width: 350px;
+            font-size: 18px;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        
+        .login-gate button {
+            padding: 20px 60px;
+            background: #c41e3a;
+            color: white;
+            border: none;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 18px;
+        }
+        
+        .final-reveal {
+            display: none;
+            text-align: center;
+        }
+        
+        .final-reveal.visible { display: block; }
+        
+        .case-closed {
+            display: inline-block;
+            padding: 15px 40px;
+            background: #00c853;
+            color: white;
+            font-family: 'Courier Prime', monospace;
+            margin-bottom: 40px;
+        }
+        
+        .final-reveal h1 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 64px;
+            margin-bottom: 30px;
+            background: linear-gradient(135deg, #d4af37, #c41e3a);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        .reveal-text {
+            font-size: 20px;
+            line-height: 1.8;
+            margin-bottom: 50px;
+            opacity: 0.9;
+        }
+        
+        .jv-reveal {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 56px;
+            color: #d4af37;
+            margin: 40px 0;
+            text-shadow: 0 0 30px rgba(212, 175, 55, 0.3);
+        }
+        
+        .destination-box {
+            background: rgba(212, 175, 55, 0.1);
+            border: 2px solid #d4af37;
+            padding: 50px;
+            margin-top: 50px;
+        }
+        
+        .destination-box p {
+            margin-bottom: 30px;
+            font-size: 18px;
+        }
+        
+        .secret-link {
+            display: inline-block;
+            padding: 25px 60px;
+            background: #d4af37;
+            color: #000;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 20px;
+            transition: all 0.3s;
+        }
+        
+        .secret-link:hover {
+            transform: scale(1.05);
+            box-shadow: 0 10px 40px rgba(212, 175, 55, 0.4);
+        }
+        
+        .signature {
+            margin-top: 60px;
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 28px;
+            font-style: italic;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="login-gate" id="login-gate">
+            <h2>🔐 MAXIMUM CLEARANCE REQUIRED</h2>
+            <p>Final authentication code needed to access terminal bequest.</p>
+            <input type="password" id="final-code" placeholder="ENTER FINAL CODE">
+            <br>
+            <button onclick="checkFinalCode()">Authenticate</button>
+            <p id="error-msg" style="color: #c41e3a; margin-top: 20px;"></p>
+        </div>
+        
+        <div class="final-reveal" id="final-reveal">
+            <div class="case-closed">CASE FILE: VE-2024-0214 — CLOSED</div>
+            
+            <h1>The Archives Were Never About History</h1>
+            
+            <div class="reveal-text">
+                <p>They were about <strong>our</strong> story.</p>
+                <p style="margin-top: 20px;">
+                    You spent days investigating a man who doesn't exist.<br>
+                    You solved ciphers, reconstructed timelines, decoded spectra.<br>
+                    You found yourself at the center of the mystery.
+                </p>
+            </div>
+            
+            <div class="jv-reveal">
+                J.V. = J. Valentine
+            </div>
+            
+            <p style="font-size: 18px; opacity: 0.9;">
+                Julian Vale was a fiction.<br>
+                But my love is not.
+            </p>
+            
+            <div class="destination-box">
+                <p>One final destination awaits.</p>
+                <p style="font-size: 16px; opacity: 0.8;">Your personal message. Your photos. Your song.</p>
+                <a href="https://YOUR_WEBSITE_2_URL.com" class="secret-link" target="_blank">
+                    Open Your Valentine →
+                </a>
+            </div>
+            
+            <div class="signature">
+                <p>I'll be waiting on the other side.</p>
+                <p style="color: #d4af37; margin-top: 10px;">— Your Valentine</p>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        if (localStorage.getItem('vale_site_6') !== 'completed') {
+            document.getElementById('error-msg').textContent = 'Complete all previous sites first.';
+        }
+        
+        function checkFinalCode() {
+            const code = document.getElementById('final-code').value.toUpperCase().trim();
+            if (code === 'VALENTINE') {
+                localStorage.setItem('vale_site_7', 'completed');
+                document.getElementById('login-gate').style.display = 'none';
+                document.getElementById('final-reveal').classList.add('visible');
+            } else {
+                document.getElementById('error-msg').textContent = 'Incorrect code. Complete all authentication steps.';
+            }
+        }
+    </script>
+</body>
+</html>"""
+
+with open('/mnt/kimi/output/SITE_7_FINAL.html', 'w') as f:
+    f.write(site7)
+
+print("✅ Site 7 created: Final gateway to Website 2")
+print("\n" + "="*70)
+print("COMPLETE 7-SITE SYSTEM CREATED")
+print("="*70)
+print("\n📁 Files created:")
+print("1. 00_MAIN_HUB.html - Central directory")
+print("2. SITE_1_BEQUEST.html - UV light puzzle → Code: SHADOW")
+print("3. SITE_2_JOURNAL.html - A=1 cipher → Code: CHRONOS")
+print("4. SITE_3_CATALOG.html - Anagram puzzle → Code: WATCH")
+print("5. SITE_4_FOOTAGE.html - Timeline puzzle → Code: VOICE")
+print("6. SITE_5_AUDIO.html - Frequency puzzle → Code: HEART")
+print("7. SITE_6_DOSSIER.html - Multi-factor auth → Code: VALENTINE")
+print("8. SITE_7_FINAL.html - Gateway to Website 2")
+print("\n🔗 Connection: Site 7 links to Website 2 (romantic reveal)")
+
