@@ -1,0 +1,275 @@
+site2 = """<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Evidence Site 02 - Vale's Journal</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600&family=Courier+Prime&display=swap');
+        
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body {
+            font-family: 'Courier Prime', monospace;
+            background: #1a1a1a;
+            color: #e0e0e0;
+            min-height: 100vh;
+            padding: 40px 20px;
+        }
+        
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        
+        .back-link {
+            display: inline-block;
+            margin-bottom: 30px;
+            color: #d4af37;
+            text-decoration: none;
+        }
+        
+        .login-gate {
+            background: #0a0a0f;
+            padding: 60px;
+            text-align: center;
+            border: 1px solid #d4af37;
+        }
+        
+        .login-gate h2 {
+            color: #d4af37;
+            margin-bottom: 20px;
+        }
+        
+        .login-gate input {
+            padding: 15px;
+            background: #1a1a1a;
+            border: 1px solid #d4af37;
+            color: #d4af37;
+            font-family: 'Courier Prime', monospace;
+            width: 300px;
+            margin-right: 10px;
+        }
+        
+        .login-gate button {
+            padding: 15px 30px;
+            background: #d4af37;
+            color: #0a0a0f;
+            border: none;
+            cursor: pointer;
+            font-weight: 600;
+        }
+        
+        .journal-content {
+            display: none;
+            background: #f5f1e8;
+            color: #2c2416;
+            padding: 60px;
+        }
+        
+        .journal-content.visible { display: block; }
+        
+        .journal-header {
+            text-align: center;
+            margin-bottom: 40px;
+            padding-bottom: 30px;
+            border-bottom: 2px solid #2c2416;
+        }
+        
+        .entry {
+            margin-bottom: 40px;
+            padding: 30px;
+            background: white;
+            border: 1px solid #ddd;
+            position: relative;
+        }
+        
+        .entry-date {
+            color: #8b4513;
+            font-weight: bold;
+            margin-bottom: 15px;
+        }
+        
+        .margin-note {
+            position: absolute;
+            right: 30px;
+            top: 30px;
+            color: #c41e3a;
+            font-size: 24px;
+            font-weight: bold;
+        }
+        
+        .cipher-challenge {
+            margin-top: 60px;
+            padding: 40px;
+            background: #0a0a0f;
+            color: #e0e0e0;
+            border: 2px solid #d4af37;
+        }
+        
+        .cipher-challenge h3 {
+            color: #d4af37;
+            margin-bottom: 20px;
+        }
+        
+        .sequence {
+            font-size: 32px;
+            color: #d4af37;
+            margin: 20px 0;
+            letter-spacing: 10px;
+        }
+        
+        .cipher-input {
+            display: flex;
+            gap: 10px;
+            margin-top: 30px;
+        }
+        
+        .cipher-input input {
+            flex: 1;
+            padding: 15px;
+            background: #1a1a1a;
+            border: 1px solid #d4af37;
+            color: #d4af37;
+            font-family: 'Courier Prime', monospace;
+        }
+        
+        .cipher-input button {
+            padding: 15px 40px;
+            background: #d4af37;
+            color: #0a0a0f;
+            border: none;
+            cursor: pointer;
+            font-weight: 600;
+        }
+        
+        .success-panel {
+            display: none;
+            margin-top: 30px;
+            padding: 30px;
+            background: #00c853;
+            color: white;
+            text-align: center;
+        }
+        
+        .success-panel.visible { display: block; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="00_MAIN_HUB.html" class="back-link">← Return to Archive</a>
+        
+        <div class="login-gate" id="login-gate">
+            <h2>🔐 Evidence Site 02 Protected</h2>
+            <p style="margin-bottom: 30px;">Enter access code from Site 01</p>
+            <input type="password" id="access-code" placeholder="Access code">
+            <button onclick="checkAccess()">Access Journal</button>
+            <p id="login-error" style="color: #c41e3a; margin-top: 20px;"></p>
+        </div>
+        
+        <div class="journal-content" id="journal-content">
+            <div class="journal-header">
+                <h1>Research Notes</h1>
+                <p>Project: Romantic Gestures Through History</p>
+                <p style="font-size: 12px; opacity: 0.6; margin-top: 10px;">PRIVATE - DO NOT DISTRIBUTE</p>
+            </div>
+            
+            <div class="entry">
+                <div class="entry-date">January 3rd, 2024</div>
+                <p>Studying Napoleonic ciphers. The 1812 letter contains marginalia—numbers that correspond to letters. Their passion was encryption. The sequence begins with 8.</p>
+                <div class="margin-note">8</div>
+            </div>
+            
+            <div class="entry">
+                <div class="entry-date">January 8th, 2024</div>
+                <p>Elizabeth Barrett Browning destroyed four sonnets before the famous fifth. What secrets did they hold? Perhaps the numbers know the truth she hid.</p>
+                <div class="margin-note">5</div>
+            </div>
+            
+            <div class="entry">
+                <div class="entry-date">January 14th, 2024</div>
+                <p>Victorian language of flowers: violet means "I'll always be true." Subject left one behind at the library, unaware of observation. The 18th letter calls to me.</p>
+                <div class="margin-note">18</div>
+            </div>
+            
+            <div class="entry">
+                <div class="entry-date">January 18th, 2024</div>
+                <p>1940s spy encoded love in knitting patterns. Purl = dot, knit = dash. Morse in wool. Numbers translate to meaning when you know the code.</p>
+                <div class="margin-note">14</div>
+            </div>
+            
+            <div class="entry">
+                <div class="entry-date">February 1st, 2024</div>
+                <p>Modern analysis: perfect gesture needs surprise, effort, personal knowledge. Subject prefers tea at 4pm. Laughs at puns. Studies crime. The first letter is A.</p>
+                <div class="margin-note">1</div>
+            </div>
+            
+            <div class="entry">
+                <div class="entry-date">February 5th, 2024</div>
+                <p>Collection nears completion. Twelve items, two centuries. Final piece requires subject to solve. She will decode her own name. M is the 13th.</p>
+                <div class="margin-note">13</div>
+            </div>
+            
+            <div class="entry">
+                <div class="entry-date">February 10th, 2024</div>
+                <p>Final entry. All systems ready. She will investigate. She will discover herself at the center. The cipher is the key. The last number is 5.</p>
+                <div class="margin-note">5</div>
+            </div>
+            
+            <div class="cipher-challenge">
+                <h3>🔐 Cryptographic Challenge</h3>
+                <p>Decode the margin sequence to reveal the subject's identity:</p>
+                <div class="sequence">8 - 5 - 18 - 14 - 1 - 13 - 5</div>
+                <p style="font-size: 14px; opacity: 0.8;">A=1, B=2, C=3, D=4, E=5, F=6, G=7, H=8...</p>
+                
+                <div class="cipher-input">
+                    <input type="text" id="cipher-answer" placeholder="Enter decoded name">
+                    <button onclick="checkCipher()">Decode</button>
+                </div>
+                <p id="cipher-error" style="color: #c41e3a; margin-top: 15px;"></p>
+                
+                <div class="success-panel" id="cipher-success">
+                    <h2>✓ Identity Confirmed</h2>
+                    <p>Subject identified. Next site unlocked.</p>
+                    <p style="margin-top: 20px; font-size: 24px; color: #d4af37;">NEXT CODE: <strong>CHRONOS</strong></p>
+                    <a href="00_MAIN_HUB.html" style="color: white; display: inline-block; margin-top: 20px; padding: 15px 30px; background: rgba(0,0,0,0.3); text-decoration: none;">Return to Archive →</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        // Check if site 1 is completed
+        if (localStorage.getItem('vale_site_1') !== 'completed') {
+            document.getElementById('login-error').textContent = 'Complete Site 01 first.';
+        }
+        
+        function checkAccess() {
+            const code = document.getElementById('access-code').value.toUpperCase().trim();
+            if (code === 'SHADOW') {
+                document.getElementById('login-gate').style.display = 'none';
+                document.getElementById('journal-content').classList.add('visible');
+            } else {
+                document.getElementById('login-error').textContent = 'Incorrect code.';
+            }
+        }
+        
+        function checkCipher() {
+            const answer = document.getElementById('cipher-answer').value.toLowerCase().trim();
+            const correct = 'hername'; // CHANGE TO HER NAME
+            
+            if (answer === correct) {
+                localStorage.setItem('vale_site_2', 'completed');
+                localStorage.setItem('vale_site_3', 'unlocked');
+                document.getElementById('cipher-success').classList.add('visible');
+            } else {
+                document.getElementById('cipher-error').textContent = 'Incorrect. A=1, B=2, C=3... 8=H, 5=E...';
+            }
+        }
+    </script>
+</body>
+</html>"""
+
+with open('/mnt/kimi/output/SITE_2_JOURNAL.html', 'w') as f:
+    f.write(site2)
+
