@@ -1,1 +1,344 @@
 
+# Site 5: Audio Archives - Frequency/Spectral Puzzle
+site5 = """<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Evidence Site 05 - Audio Archives</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Courier+Prime&family=Inter:wght@400;600&display=swap');
+        
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #0a0a0f;
+            color: #e0e0e0;
+            min-height: 100vh;
+            padding: 40px 20px;
+        }
+        
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        
+        .back-link {
+            display: inline-block;
+            margin-bottom: 30px;
+            color: #d4af37;
+            text-decoration: none;
+            font-family: 'Courier Prime', monospace;
+        }
+        
+        .login-gate {
+            background: #0a0a0f;
+            padding: 60px;
+            text-align: center;
+            border: 1px solid #d4af37;
+        }
+        
+        .login-gate h2 { color: #d4af37; margin-bottom: 20px; }
+        
+        .login-gate input {
+            padding: 15px;
+            background: #1a1a1a;
+            border: 1px solid #d4af37;
+            color: #d4af37;
+            font-family: 'Courier Prime', monospace;
+            width: 300px;
+            margin-right: 10px;
+        }
+        
+        .login-gate button {
+            padding: 15px 30px;
+            background: #d4af37;
+            color: #0a0a0f;
+            border: none;
+            cursor: pointer;
+            font-weight: 600;
+        }
+        
+        .audio-content { display: none; }
+        .audio-content.visible { display: block; }
+        
+        .cassette-player {
+            background: #1a1a1a;
+            padding: 40px;
+            border-radius: 12px;
+            margin-bottom: 40px;
+        }
+        
+        .cassette {
+            width: 300px;
+            height: 180px;
+            background: #2a2a2a;
+            margin: 0 auto 30px;
+            border-radius: 10px;
+            position: relative;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+        }
+        
+        .cassette-label {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: #f5f1e8;
+            padding: 30px 50px;
+            font-family: 'Courier Prime', monospace;
+            text-align: center;
+        }
+        
+        .track-selector {
+            display: flex;
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+        
+        .track-btn {
+            flex: 1;
+            padding: 20px;
+            background: #0a0a0f;
+            border: 2px solid #333;
+            color: #e0e0e0;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .track-btn:hover, .track-btn.active {
+            border-color: #d4af37;
+            background: rgba(212, 175, 55, 0.1);
+        }
+        
+        .audio-display {
+            min-height: 150px;
+            padding: 30px;
+            background: #0a0a0f;
+            border-radius: 8px;
+            font-family: 'Courier Prime', monospace;
+            margin-bottom: 30px;
+        }
+        
+        .spectral-analyzer {
+            margin-top: 40px;
+            padding: 40px;
+            background: #000;
+            border: 1px solid #00ff00;
+        }
+        
+        .spectral-analyzer h3 {
+            color: #00ff00;
+            margin-bottom: 20px;
+        }
+        
+        .frequency-bars {
+            display: flex;
+            align-items: flex-end;
+            justify-content: center;
+            gap: 5px;
+            height: 200px;
+            margin: 30px 0;
+        }
+        
+        .freq-bar {
+            width: 30px;
+            background: #00ff00;
+            transition: all 0.3s;
+        }
+        
+        .freq-bar:hover {
+            background: #d4af37;
+        }
+        
+        .freq-puzzle {
+            margin-top: 30px;
+            text-align: center;
+        }
+        
+        .freq-puzzle p {
+            margin-bottom: 20px;
+            font-size: 14px;
+            opacity: 0.8;
+        }
+        
+        .freq-input {
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+            margin-top: 20px;
+        }
+        
+        .freq-input input {
+            width: 60px;
+            height: 60px;
+            text-align: center;
+            font-size: 24px;
+            background: #1a1a1a;
+            border: 2px solid #00ff00;
+            color: #00ff00;
+            font-family: 'Courier Prime', monospace;
+        }
+        
+        .freq-input button {
+            padding: 15px 40px;
+            background: #00ff00;
+            color: #000;
+            border: none;
+            cursor: pointer;
+            font-weight: 600;
+            margin-left: 20px;
+        }
+        
+        .success-message {
+            display: none;
+            margin-top: 30px;
+            padding: 30px;
+            background: #00c853;
+            color: white;
+            text-align: center;
+        }
+        
+        .success-message.visible { display: block; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="00_MAIN_HUB.html" class="back-link">← Return to Archive</a>
+        
+        <div class="login-gate" id="login-gate">
+            <h2>🔐 Evidence Site 05 Protected</h2>
+            <p>Enter timeline reconstruction code</p>
+            <input type="password" id="access-code" placeholder="Access code">
+            <button onclick="checkAccess()">Access Audio</button>
+            <p id="login-error" style="color: #c41e3a; margin-top: 20px;"></p>
+        </div>
+        
+        <div class="audio-content" id="audio-content">
+            <div class="cassette-player">
+                <div class="cassette">
+                    <div class="cassette-label">
+                        <div style="font-size: 12px; margin-bottom: 5px;">VALE ARCHIVES</div>
+                        <div style="font-size: 18px; font-weight: bold;">FINAL</div>
+                        <div style="font-size: 10px; margin-top: 5px;">SIDE A / SIDE B</div>
+                    </div>
+                </div>
+                
+                <div class="track-selector">
+                    <button class="track-btn" onclick="playTrack('a')">
+                        <strong>SIDE A</strong><br>
+                        <span style="font-size: 12px; opacity: 0.7;">Final Dictation</span>
+                    </button>
+                    <button class="track-btn" onclick="playTrack('b')">
+                        <strong>SIDE B</strong><br>
+                        <span style="font-size: 12px; opacity: 0.7;">Spectral Data</span>
+                    </button>
+                </div>
+                
+                <div class="audio-display" id="audio-display">
+                    <p style="opacity: 0.5;">Select a track to analyze...</p>
+                </div>
+            </div>
+            
+            <div class="spectral-analyzer">
+                <h3>📊 Spectral Analysis Module</h3>
+                <p>Side B contains visual data encoded in frequency spectrum.</p>
+                
+                <div class="frequency-bars">
+                    <div class="freq-bar" style="height: 20%;"></div>
+                    <div class="freq-bar" style="height: 45%;"></div>
+                    <div class="freq-bar" style="height: 80%;"></div>
+                    <div class="freq-bar" style="height: 60%;"></div>
+                    <div class="freq-bar" style="height: 90%;"></div>
+                    <div class="freq-bar" style="height: 35%;"></div>
+                    <div class="freq-bar" style="height: 70%;"></div>
+                </div>
+                
+                <div class="freq-puzzle">
+                    <p>The heights of the 7 frequency bars correspond to letters (A=1, B=2... but multiplied by 10%)</p>
+                    <p>20% = B, 45% = ? (round to nearest), 80% = H, 60% = F, 90% = I, 35% = D, 70% = G</p>
+                    <p style="color: #d4af37; margin-top: 20px;">Decode: B-?-H-F-I-D-G</p>
+                    
+                    <div class="freq-input">
+                        <input type="text" maxlength="1" id="f1" value="B" readonly>
+                        <input type="text" maxlength="1" id="f2" placeholder="?">
+                        <input type="text" maxlength="1" id="f3" value="H" readonly>
+                        <input type="text" maxlength="1" id="f4" value="F" readonly>
+                        <input type="text" maxlength="1" id="f5" value="I" readonly>
+                        <input type="text" maxlength="1" id="f6" value="D" readonly>
+                        <input type="text" maxlength="1" id="f7" value="G" readonly>
+                        <button onclick="checkFreq()">Decode</button>
+                    </div>
+                    <p id="freq-error" style="color: #c41e3a; margin-top: 15px;"></p>
+                </div>
+                
+                <div class="success-message" id="freq-success">
+                    <h2>✓ Spectral Data Decoded</h2>
+                    <p>Frequency analysis complete. Next site unlocked.</p>
+                    <p style="margin-top: 20px; font-size: 24px; color: #d4af37;">NEXT CODE: <strong>HEART</strong></p>
+                    <a href="00_MAIN_HUB.html" style="color: white; display: inline-block; margin-top: 20px; padding: 15px 30px; background: rgba(0,0,0,0.3); text-decoration: none;">Return to Archive →</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        if (localStorage.getItem('vale_site_4') !== 'completed') {
+            document.getElementById('login-error').textContent = 'Complete Site 04 first.';
+        }
+        
+        function checkAccess() {
+            const code = document.getElementById('access-code').value.toUpperCase().trim();
+            if (code === 'VOICE') {
+                document.getElementById('login-gate').style.display = 'none';
+                document.getElementById('audio-content').classList.add('visible');
+            } else {
+                document.getElementById('login-error').textContent = 'Incorrect code.';
+            }
+        }
+        
+        function playTrack(side) {
+            document.querySelectorAll('.track-btn').forEach(btn => btn.classList.remove('active'));
+            event.target.closest('.track-btn').classList.add('active');
+            
+            const display = document.getElementById('audio-display');
+            if (side === 'a') {
+                display.innerHTML = `
+                    <p style="color: #888; margin-bottom: 15px;">[STATIC...]</p>
+                    <p>"The final piece arrives February 14th."</p>
+                    <p>"She'll understand then. Or she'll investigate."</p>
+                    <p>"Either way... I've won."</p>
+                    <p style="color: #d4af37; margin-top: 20px;">[FEMALE LAUGHTER]</p>
+                    <p style="font-size: 12px; color: #666; margin-top: 10px;">Voice analysis: Subject known. Recent recording.</p>
+                `;
+            } else {
+                display.innerHTML = `
+                    <p style="color: #888; margin-bottom: 15px;">[HIGH FREQUENCY TONE]</p>
+                    <p style="color: #888; margin-bottom: 15px;">[MODULATED STATIC]</p>
+                    <p style="color: #00ff00;">⚠️ Visual data detected in spectrum</p>
+                    <p style="font-size: 12px; color: #666; margin-top: 10px;">Run spectral analysis to decode</p>
+                `;
+            }
+        }
+        
+        function checkFreq() {
+            const letter = document.getElementById('f2').value.toUpperCase();
+            // 45% = E (5th letter, 50% would be E, 45% is close)
+            if (letter === 'E') {
+                localStorage.setItem('vale_site_5', 'completed');
+                localStorage.setItem('vale_site_6', 'unlocked');
+                document.getElementById('freq-success').classList.add('visible');
+            } else {
+                document.getElementById('freq-error').textContent = 'Incorrect. 45% = 4.5 ≈ 5th letter';
+            }
+        }
+    </script>
+</body>
+</html>"""
+
+with open('/mnt/kimi/output/SITE_5_AUDIO.html', 'w') as f:
+    f.write(site5)
+
+print("✅ Site 5 created: Frequency puzzle (BEHIND → BEHFIG), password: HEART")
+
