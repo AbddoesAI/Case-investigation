@@ -1,6 +1,4 @@
-
-# Site 6: Subject Dossier - Multi-factor Authentication
-site6 = """<!DOCTYPE html>
+site6 = <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -250,17 +248,17 @@ site6 = """<!DOCTYPE html>
                     <h4 style="color: #d4af37; margin-bottom: 20px;">Factor 2: Knowledge-Based Authentication</h4>
                     
                     <div class="question">
-                        <p>Q1: What beverage does the subject prefer after 4pm?</p>
+                        <p>Q1: What beverage does the subject prefer after all the time?</p>
                         <input type="text" id="q1" placeholder="Answer">
                     </div>
                     
                     <div class="question">
-                        <p>Q2: What item did the subject leave at the library on January 15th?</p>
+                        <p>Q2: What item did the subject give to her BF?</p>
                         <input type="text" id="q2" placeholder="Answer">
                     </div>
                     
                     <div class="question">
-                        <p>Q3: What field of study is the subject pursuing?</p>
+                        <p>Q3: What item does the subject always want from cafe?</p>
                         <input type="text" id="q3" placeholder="Answer">
                     </div>
                     
@@ -283,12 +281,12 @@ site6 = """<!DOCTYPE html>
                     
                     <div class="log-entry">
                         <div style="color: #d4af37; font-size: 12px;">2024-01-10 14:23</div>
-                        <p>Subject observed researching historical cryptography. Aptitude for pattern recognition noted. Will design accordingly.</p>
+                        <p>Subject does not take good photos. Aptitude for photos noted. Will design accordingly.</p>
                     </div>
                     
                     <div class="log-entry">
                         <div style="color: #d4af37; font-size: 12px;">2024-01-15 16:45</div>
-                        <p>Subject left personal item (scarf) at library. Retrieved 18:30. Careless with possessions, careful with people.</p>
+                        <p>Last seen wearing a paranda, visual evidence suggests coordinated fashion choices indicating premeditated attractiveness.</p>
                     </div>
                     
                     <div class="log-entry">
@@ -354,7 +352,7 @@ site6 = """<!DOCTYPE html>
             const a3 = document.getElementById('q3').value.toLowerCase().trim();
             
             // Answers: tea, scarf, criminology (customize these!)
-            if (a1.includes('tea') && a2.includes('scarf') && a3.includes('criminology')) {
+            if (a1.includes('chai') && a2.includes('hairtie') && a3.includes('jelly')) {
                 document.getElementById('dossier-reveal').classList.add('visible');
                 document.getElementById('kba-section').style.display = 'none';
             } else {
@@ -369,10 +367,4 @@ site6 = """<!DOCTYPE html>
         }
     </script>
 </body>
-</html>"""
-
-with open('/mnt/kimi/output/SITE_6_DOSSIER.html', 'w') as f:
-    f.write(site6)
-
-print("✅ Site 6 created: Multi-factor auth (fingerprint + 3 questions), password: VALENTINE")
-
+</html>
